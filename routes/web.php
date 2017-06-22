@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/carrera','CarreraController');
+//route::get('/carrera','CarreraController@index');
+//route::get('/carrera/nueva','CarreraController@create');

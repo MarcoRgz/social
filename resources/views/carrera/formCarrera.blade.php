@@ -7,10 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Registro carreras</div>
                 <div class="panel-body">
+                  @if(isset($carrera))
+                    {!! Form::model($carrera, ['route' => ['carrera.update', $carrera->id], 'method' => 'patch']) !!}
+                    @else
                   {!! Form::open(['route' => 'carrera.store']) !!}
-                    {!! Form::label('carerra','Carrera')!!}
-                    {!! Form::text('carerra')!!}
-                    {!! Form::submit('Aceptar', ['class' => 'btn btn-primary'])!!}
+                    @endif
+                    {!! Form::label('carerra','Carrera') !!}
+                    {!! Form::text('carrera', null) !!}
+                    {!! Form::submit('Aceptar', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::close()!!}
                     </form>
                 </div>
             </div>

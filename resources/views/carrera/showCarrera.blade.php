@@ -8,29 +8,28 @@
                 <div class="panel-heading">Programa carreras</div>
 
                 <div class="panel-body">
-                  @if(count($carreras) > 0)
                     <table class="table table-hover">
                        <thead>
                           <th>id</th>
                           <th>Carrera</th>
+                          <th>Acciones</th>
                          </thead>
                         <body>
-                     @foreach ($carreras as $carrera)
                         <tr>
                           <td>{{ $carrera->id}}</td>
-                          <td>
-                            <a href="{{ route('carrera.show', $carrera->id) }}">{{ $carrera->carrera}}</a>
-                            </td>
                           <td>{{ $carrera->carrera}}</td>
+                          <td> <a href="{{route('carrera.edit',$carrera->id) }}"
+                                class="btn btn-warning">Editar
+                              </a>
+                                {!! Form::open(['route' => ['carrera.destroy', $carrera->id], 'method'=>'delete']) !!}
+                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::close()!!}
+                          </td>
                         </tr>
-                      @endforeach
+
                     </body>
                     </table>
-                    @else
-                    <span> No hay carreras</span>
-                    @endif
 
-                    <a href="{{ route('carrera.create') }}" class="btn btn-success"> Nueva carrera</a>
                 </div>
             </div>
         </div>

@@ -36,14 +36,9 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-      Carerra::create($request->input());
-    /*
-        $carrera = new Carrera ();
-        $carrera -> carrera  = $request->input('carrera');
-        $carrera->save();
-*/
-        return redirect()->route('carrera.index');
-
+        $this->validate($request, ['carrera' => 'required|max:255|unique:carreras']);
+      Carrera::create($request->input());
+         return redirect()->route('carrera.index');
     }
 
     /**

@@ -27,8 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-      public function carreras()
+      public function carrera()
       {
-        return $this->hasMany('App\Carrera');
+        return $this->belongsTo('App\Carrera');
       }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\programas;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -47,7 +48,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+      $user = User::find($id);
+      $programas = Programa::lists('id','nombre')->all();
+       foreach($programa as $programa ) {
+        $arrProgramas[] = [$programa->id => $programa->nombre];
+        # code...
+      }
+
+              return view('user.showUser', compact('user','programas'));
+
     }
 
     /**

@@ -8,7 +8,6 @@
                 <div class="panel-heading">Programa carreras</div>
 
                 <div class="panel-body">
-                  @if(count($usuarios) > 0)
                     <table class="table table-hover">
                        <thead>
                           <th>id</th>
@@ -19,24 +18,31 @@
                           <th>Rol</th>
                          </thead>
                         <body>
-                     @foreach ($usuarios as $user)
+
                         <tr>
                           <td>{{$user->id}}</td>
                           <td>{{$user->codigo}}</td>
-                          <a href="#">{{$user->nombre}}</a>
+                          <td>{{$user->nombre}}</td>
                           <td>{{$user->correo}}</td>
                           <td>{{$user->carrera->carrera}}</td>
                           <td>{{$user->rol}}</td>
                         </tr>
-                      @endforeach
                     </body>
                     </table>
-                    @else
                     <span> No hay carreras</span>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          {!! Form::open(['action', => AdminUsuarioController@asociarPrograma])}
+          {!!Form::label('programa_id', 'Seleccione el programa',['class' => ''])}
+          {!! Form::select('programa_id',$programas, null ['class'=> 'form-control'])}
+          {!! Form::hidden('user_id',$user->id) !!}
+          {!! Form::submint('Aceptar', ['class' => 'btn btn-default'])!!}
+          {!! From::close()!!}
+    </div>
+  </div>
 </div>
 @endsection

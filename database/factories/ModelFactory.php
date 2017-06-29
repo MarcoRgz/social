@@ -14,11 +14,20 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'nombre' => $faker->name,
+        'correo' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'codigo' => $faker->randomNumber(6),
+        'rol' => 'Prestador',
+        'carrera_id' => $faker->numberBetween(1, 3),
+        'remember_token' => '',
+        'created_at' => $faker->dateTime(),
+        'updated_at' => $faker->dateTime(),
     ];
+});
+
+$factory->defineAs(App\User::class, 'admin', function ($faker) use ($factory) {
+    $user = $factory->raw(App\User::class);
+    return array_merge($user, ['rol' => 'Admin']);
 });

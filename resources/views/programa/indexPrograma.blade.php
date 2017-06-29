@@ -8,25 +8,25 @@
                 <div class="panel-heading">Programa carreras</div>
 
                 <div class="panel-body">
-                  @if(count($usuarios) > 0)
+                  @if(count($programas) > 0)
                     <table class="table table-hover">
                        <thead>
                           <th>id</th>
-                          <th>Codigo</th>
-                          <th>Nombre</th>
-                          <th>Correo</th>
-                          <th>Carrera</th>
-                          <th>Rol</th>
+                          <th>Nombre del programa</th>
+                          <th>Horario</th>
+
                          </thead>
                         <body>
-                     @foreach ($usuarios as $user)
+                     @foreach ($programas as $programa)
                         <tr>
-                          <td>{{$user->id}}</td>
-                          <td>{{$user->codigo}}</td>
-                          <td>{{$user->nombre}}</td>
-                          <td>{{$user->correo}}</td>
-                          <td>{{$user->carrera->carrera}}</td>
-                          <td>{{$user->rol}}</td>
+                          <td>{{$programa->id}}</td>
+                          <td>{{$programa->nombre}}</td>
+                          <td>{{$programa->horario}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"> @foreach($programa->user as $usuario)
+                              <li>{{$usuario->nombre }} {{$usuario->rol}}</li>
+                          </td>
                         </tr>
                       @endforeach
                     </body>

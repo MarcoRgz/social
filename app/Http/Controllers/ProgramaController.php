@@ -14,7 +14,14 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        //
+      $programas = Programa::with(['user' => function($query)  {
+        $query->where('rol','prestador');
+      }])->get();
+      // $programas = Programa::all()->ldap_control_paged_result('usuarios');
+
+       //consulta where $programas = Programa::where('id', 2)->get();
+
+       return view('programa.indexPrograma',compact('programas'));
     }
 
     /**

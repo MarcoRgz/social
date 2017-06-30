@@ -12,11 +12,25 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($rol = null)
     {
-      $programas = Programa::with(['user' => function($query)  {
-        $query->where('rol','prestador');
-      }])->get();
+
+      if($rol == 'prestador'){
+
+      $programas = Programa::Rol($rol)->get();
+    }
+
+     /*elseif ($rol == 'admin') {
+
+            $programas = Programa::whith(['users' => function($query) {
+              $query->where('rol', 'admin');
+            }]) ->get();
+            */
+            else {
+              $programas  = Programa::all()->load('users');
+            }
+
+          }
       // $programas = Programa::all()->ldap_control_paged_result('usuarios');
 
        //consulta where $programas = Programa::where('id', 2)->get();

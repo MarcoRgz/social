@@ -24,8 +24,9 @@
                           <td>{{$programa->horario}}</td>
                         </tr>
                         <tr>
-                          <td colspan="3"> @foreach($programa->user as $usuario)
+                          <td colspan="3"> @foreach($programa->users as $usuario)
                               <li>{{$usuario->nombre }} {{$usuario->rol}}</li>
+                            @endforeach
                           </td>
                         </tr>
                       @endforeach

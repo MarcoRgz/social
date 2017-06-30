@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/carrera','CarreraController');
 Route::resource('/usuario','UserController');
 Route::resource('/programa','ProgramaController');
+Route::get('/programa/{rol?}', 'ProgramaController@index');
+Route::resource('/´programa', 'ProgramaController', ['except' => 'index'] );
 
 Route::post('/admin-usuario/asociar-programa','AdminUsuarioController@asociarPrograma');
 //route::get('/carrera','CarreraController@index');
